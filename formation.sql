@@ -1,11 +1,11 @@
 -- phpMyAdmin SQL Dump
--- version 4.8.3
+-- version 4.7.9
 -- https://www.phpmyadmin.net/
 --
--- Host: 127.0.0.1:3306
--- Generation Time: Nov 01, 2018 at 04:44 PM
--- Server version: 5.7.23
--- PHP Version: 7.2.10
+-- Hôte : 127.0.0.1:3306
+-- Généré le :  ven. 14 déc. 2018 à 14:36
+-- Version du serveur :  5.7.21
+-- Version de PHP :  7.2.4
 
 SET SQL_MODE = "NO_AUTO_VALUE_ON_ZERO";
 SET AUTOCOMMIT = 0;
@@ -19,175 +19,202 @@ SET time_zone = "+00:00";
 /*!40101 SET NAMES utf8mb4 */;
 
 --
--- Database: `formation`
+-- Base de données :  `formation`
 --
 
 -- --------------------------------------------------------
 
 --
--- Table structure for table `formateur`
+-- Structure de la table `formateur`
 --
 
 DROP TABLE IF EXISTS `formateur`;
 CREATE TABLE IF NOT EXISTS `formateur` (
-  `id_formateur` int(11) NOT NULL,
+  `id_formateur` varchar(13) NOT NULL,
   `nom` varchar(20) NOT NULL,
   `prenom` varchar(20) NOT NULL,
-  `id_salle` int(11) NOT NULL,
+  `id_salle` varchar(13) NOT NULL,
   PRIMARY KEY (`id_formateur`)
 ) ENGINE=MyISAM DEFAULT CHARSET=latin1;
 
 --
--- Dumping data for table `formateur`
+-- Déchargement des données de la table `formateur`
 --
 
 INSERT INTO `formateur` (`id_formateur`, `nom`, `prenom`, `id_salle`) VALUES
-(1, 'Dupont', 'Robert', 1),
-(2, 'Martin', 'Alexis', 2),
-(3, 'Durand', 'Paul', 3),
-(4, 'Duval', 'Alain', 4);
+('5be2ffded242f', 'Dupont', 'Robert', '5be300702398c'),
+('5be2ffded2649', 'Martin', 'Alexis', '5be3007023ae9'),
+('5be2ffded27bc', 'Durand', 'Paul', '5be3007023bcd'),
+('5be2ffded299e', 'Duval', 'Alain', '5be3007023c70');
 
 -- --------------------------------------------------------
 
 --
--- Table structure for table `nationalite`
+-- Structure de la table `nationalite`
 --
 
 DROP TABLE IF EXISTS `nationalite`;
 CREATE TABLE IF NOT EXISTS `nationalite` (
-  `id_nationalite` int(11) NOT NULL,
+  `id_nationalite` varchar(13) NOT NULL,
   `libelle` varchar(25) NOT NULL,
   PRIMARY KEY (`id_nationalite`)
 ) ENGINE=MyISAM DEFAULT CHARSET=latin1;
 
 --
--- Dumping data for table `nationalite`
+-- Déchargement des données de la table `nationalite`
 --
 
 INSERT INTO `nationalite` (`id_nationalite`, `libelle`) VALUES
-(1, 'Français'),
-(2, 'Anglais'),
-(3, 'Allemand'),
-(4, 'Russe');
+('5be3002253b6a', 'Français'),
+('5be3002253ccb', 'Anglais'),
+('5be3002253ddc', 'Allemand'),
+('5be3002253eb2', 'Russe');
 
 -- --------------------------------------------------------
 
 --
--- Table structure for table `salle`
+-- Structure de la table `salle`
 --
 
 DROP TABLE IF EXISTS `salle`;
 CREATE TABLE IF NOT EXISTS `salle` (
-  `id_salle` int(11) NOT NULL,
+  `id_salle` varchar(13) NOT NULL,
   `libelle` varchar(20) NOT NULL,
   PRIMARY KEY (`id_salle`)
 ) ENGINE=MyISAM DEFAULT CHARSET=latin1;
 
 --
--- Dumping data for table `salle`
+-- Déchargement des données de la table `salle`
 --
 
 INSERT INTO `salle` (`id_salle`, `libelle`) VALUES
-(1, '101'),
-(2, '102'),
-(3, '201'),
-(4, '202');
+('5be300702398c', '101'),
+('5be3007023ae9', '102'),
+('5be3007023bcd', '201'),
+('5be3007023c70', '202');
 
 -- --------------------------------------------------------
 
 --
--- Table structure for table `stagiaire`
+-- Structure de la table `stagiaire`
 --
 
 DROP TABLE IF EXISTS `stagiaire`;
 CREATE TABLE IF NOT EXISTS `stagiaire` (
-  `id` int(11) NOT NULL AUTO_INCREMENT,
+  `id` varchar(13) NOT NULL,
   `nom` varchar(20) NOT NULL,
   `prenom` varchar(20) NOT NULL,
-  `id_nationalite` int(11) NOT NULL,
-  `id_type_formation` int(11) NOT NULL,
+  `id_nationalite` varchar(13) NOT NULL,
+  `id_type_formation` varchar(13) NOT NULL,
   PRIMARY KEY (`id`)
-) ENGINE=MyISAM AUTO_INCREMENT=15 DEFAULT CHARSET=latin1;
+) ENGINE=MyISAM AUTO_INCREMENT=26 DEFAULT CHARSET=latin1;
 
 --
--- Dumping data for table `stagiaire`
+-- Déchargement des données de la table `stagiaire`
 --
 
 INSERT INTO `stagiaire` (`id`, `nom`, `prenom`, `id_nationalite`, `id_type_formation`) VALUES
-(1, 'Sharapova', 'Nadia', 4, 1),
-(2, 'Monfils', 'Boby', 1, 2),
-(8, 'Murray', 'Bill', 2, 1),
-(4, 'Becker', 'Josephine', 3, 2),
-(6, 'Dupont', 'Robert', 1, 2);
+('5be2fa3a502dd', 'Monfils', 'Boby', '5be3002253b6a', '5be300465efb3'),
+('5be2fa3a505ae', 'Murray', 'Bill', '5be3002253ccb', '5be300465efb3'),
+('5be2fa3a5074a', 'Becker', 'Josephine', '5be3002253ddc', '5be300465f14f'),
+('5be2fa3a508fc', 'Dupont', 'Robert', '5be3002253b6a', '5be300465f14f'),
+('5be9534d2819e', 'dsfsdf', 'sdfsdfsdf', '5be3002253ccb', '5be300465efb3'),
+('5be97eb73b4cc', 'xwfxx', 'wxfwfwxf', '5be3002253ccb', '5be300465efb3');
 
 -- --------------------------------------------------------
 
 --
--- Table structure for table `stagiaire_formateur`
+-- Structure de la table `stagiaire_formateur`
 --
 
 DROP TABLE IF EXISTS `stagiaire_formateur`;
 CREATE TABLE IF NOT EXISTS `stagiaire_formateur` (
-  `id_stagiaire` int(11) NOT NULL,
-  `id_formateur` int(11) NOT NULL,
+  `id_stagiaire` varchar(13) NOT NULL,
+  `id_formateur` varchar(13) NOT NULL,
   `date_debut` date NOT NULL,
   `date_fin` date NOT NULL
 ) ENGINE=MyISAM DEFAULT CHARSET=latin1;
 
 --
--- Dumping data for table `stagiaire_formateur`
+-- Déchargement des données de la table `stagiaire_formateur`
 --
 
 INSERT INTO `stagiaire_formateur` (`id_stagiaire`, `id_formateur`, `date_debut`, `date_fin`) VALUES
-(1, 1, '2013-07-25', '2013-10-28'),
-(1, 2, '2013-10-31', '2013-12-30'),
-(2, 4, '2013-08-26', '2013-10-18'),
-(8, 2, '2013-08-15', '2014-02-15'),
-(6, 4, '2013-08-21', '2013-10-21'),
-(4, 3, '2013-08-17', '2014-02-21');
+('5be2fa3a5074a', '5be2ffded299e', '2013-08-21', '2013-10-21'),
+('5be2fa3a505ae', '5be2ffded27bc', '2013-08-17', '2014-02-21'),
+('5be958867ebe7', '5be2ffded242f', '2018-11-15', '2018-11-16'),
+('5be97eb73b4cc', '5be2ffded2649', '2018-11-14', '2018-11-23'),
+('5be2fa3a508fc', '5be2ffded27bc', '2018-11-01', '2018-11-30'),
+('24', '1', '2018-11-06', '2018-11-23'),
+('24', '2', '2018-11-01', '2018-11-08'),
+('24', '3', '2018-11-01', '2018-11-30'),
+('5be3f922a12eb', '5be2ffded242f', '2018-11-21', '2018-11-30'),
+('5be3f970cc3f0', '5be2ffded242f', '2018-11-21', '2018-11-30'),
+('5be3f9a685f78', '5be2ffded242f', '2018-11-21', '2018-11-30'),
+('5be3f9a7e2489', '5be2ffded242f', '2018-11-21', '2018-11-30'),
+('5be3fa4460f6e', '5be2ffded242f', '2018-11-21', '2018-11-30'),
+('5be3fa701fedf', '5be2ffded242f', '2018-11-21', '2018-11-30'),
+('5be3fa71520aa', '5be2ffded242f', '2018-11-21', '2018-11-30'),
+('5be3fa724e636', '5be2ffded242f', '2018-11-21', '2018-11-30'),
+('5be3fa732e7a2', '5be2ffded242f', '2018-11-21', '2018-11-30'),
+('5be3fa74092c2', '5be2ffded242f', '2018-11-21', '2018-11-30'),
+('5be3fa750b895', '5be2ffded242f', '2018-11-21', '2018-11-30'),
+('5be3fa7652692', '5be2ffded242f', '2018-11-21', '2018-11-30'),
+('5be3faf15a26e', '5be2ffded242f', '2018-11-21', '2018-11-30'),
+('5be3fb6ebec1d', '5be2ffded242f', '2018-11-21', '2018-11-30'),
+('5be3fb86a6823', '5be2ffded242f', '2018-11-21', '2018-11-30'),
+('5be3fc162720a', '5be2ffded242f', '2018-11-21', '2018-11-30'),
+('5be3fc342f0a8', '5be2ffded242f', '2018-11-21', '2018-11-30'),
+('5be3fc476f3a0', '5be2ffded242f', '2018-11-21', '2018-11-30'),
+('5be3fc90ab018', '5be2ffded242f', '2018-11-21', '2018-11-30'),
+('5be9534d2819e', '5be2ffded242f', '2018-11-08', '2018-11-09'),
+('5be2fa3a502dd', '5be2ffded2649', '2018-11-14', '2018-11-22'),
+('5be5ae3ace6a5', '5be2ffded242f', '2018-11-15', '2018-11-23'),
+('5be5ada1c15b8', '5be2ffded27bc', '2018-11-15', '2018-11-22');
 
 -- --------------------------------------------------------
 
 --
--- Table structure for table `type_formation`
+-- Structure de la table `type_formation`
 --
 
 DROP TABLE IF EXISTS `type_formation`;
 CREATE TABLE IF NOT EXISTS `type_formation` (
-  `id_type_formation` int(11) NOT NULL,
+  `id_type_formation` varchar(13) NOT NULL,
   `libelle` varchar(25) NOT NULL,
   PRIMARY KEY (`id_type_formation`)
 ) ENGINE=MyISAM DEFAULT CHARSET=latin1;
 
 --
--- Dumping data for table `type_formation`
+-- Déchargement des données de la table `type_formation`
 --
 
 INSERT INTO `type_formation` (`id_type_formation`, `libelle`) VALUES
-(1, 'Web designer'),
-(2, 'Développeur');
+('5be300465efb3', 'Web designer'),
+('5be300465f14f', 'Développeur');
 
 -- --------------------------------------------------------
 
 --
--- Table structure for table `type_formation_formateur`
+-- Structure de la table `type_formation_formateur`
 --
 
 DROP TABLE IF EXISTS `type_formation_formateur`;
 CREATE TABLE IF NOT EXISTS `type_formation_formateur` (
-  `id_type_formation` int(11) NOT NULL,
-  `id_formateur` int(11) NOT NULL
+  `id_type_formation` varchar(13) NOT NULL,
+  `id_formateur` varchar(13) NOT NULL
 ) ENGINE=MyISAM DEFAULT CHARSET=latin1;
 
 --
--- Dumping data for table `type_formation_formateur`
+-- Déchargement des données de la table `type_formation_formateur`
 --
 
 INSERT INTO `type_formation_formateur` (`id_type_formation`, `id_formateur`) VALUES
-(1, 1),
-(1, 2),
-(2, 3),
-(2, 4);
+('5be300465efb3', '5be2ffded242f'),
+('5be300465efb3', '5be2ffded2649'),
+('5be300465f14f', '5be2ffded27bc'),
+('5be300465f14f', '5be2ffded299e'),
+('5be300465efb3', '5be2ffded27bc');
 COMMIT;
 
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;
