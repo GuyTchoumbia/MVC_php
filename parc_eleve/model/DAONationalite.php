@@ -8,8 +8,6 @@ class DAONationalite extends DAO {
         $sql = 'SELECT * FROM nationalite WHERE id_nationalite=:id';
         $param = ['id'=>$id];
         $statement = $this->executeRequest($sql,$param);
-//        $statement = $this->cnx->prepare($sql);
-//        $statement->execute(['id'=>$id]);
         $statement->setFetchMode(PDO::FETCH_CLASS|PDO::FETCH_PROPS_LATE,'Nationalite');
         return $statement->fetch();      
     }
@@ -17,7 +15,6 @@ class DAONationalite extends DAO {
     public function findAll(){
         $sql = 'SELECT * FROM nationalite';
         $statement = $this->executeRequest($sql);
-//        $statement = $this->cnx->query($sql);
         $statement->setFetchMode(PDO::FETCH_CLASS|PDO::FETCH_PROPS_LATE,'Nationalite');
         return $statement->fetchAll();
     }        

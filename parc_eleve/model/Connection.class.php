@@ -1,4 +1,7 @@
 <?php
+/*
+ * un singlton
+ */
 class singleton {
     public $connection;
     private static $dsn = 'mysql:host=localhost; dbname=formation; charset=utf8';

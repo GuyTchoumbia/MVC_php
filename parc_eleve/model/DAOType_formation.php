@@ -8,8 +8,6 @@ class DAOType_formation extends DAO {
         $sql = 'SELECT * FROM type_formation WHERE id_type_formation=:id';
         $param = ['id'=>$id];
         $statement = $this->executeRequest($sql, $param);
-//        $statement = $this->cnx->prepare($sql);
-//       $statement->execute(['id'=>$id]);
             $statement->setFetchMode(PDO::FETCH_CLASS|PDO::FETCH_PROPS_LATE,'Type_formation');
             return $statement->fetch();         
     }
@@ -17,7 +15,6 @@ class DAOType_formation extends DAO {
     public function findAll(){
         $sql = 'SELECT * from type_formation';
         $statement = $this->executeRequest($sql);
-//        $statement = $this->cnx->query($sql);
         $statement->setFetchMode(PDO::FETCH_CLASS|PDO::FETCH_PROPS_LATE,'Type_formation');
         return $statement->fetchAll();         
     }            

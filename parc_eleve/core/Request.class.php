@@ -11,7 +11,7 @@ class Request {
         $this->data = array_merge($get, $post);        
     } 
     
-    public function getData(){
+    public function getData(){ //methode a multiples parametres permettant des get sur la requete, en fonction du nombre de parametres. pas vraiment necessaire, mais un petit casse tete personnel
         switch (func_num_args()){
             case 0: 
                 return $this->data;
@@ -35,7 +35,7 @@ class Request {
         }       
     }  
     
-    public function clean($array){  //recursive function that iterates over arrays to 'clean' their values
+    public function clean($array){  //recursive function that iterates over the array $array to 'clean' their values
         foreach($array as $val){
             if (is_array($val))                
                 $this->clean($val);            

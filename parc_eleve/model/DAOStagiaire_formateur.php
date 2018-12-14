@@ -8,8 +8,6 @@ class DAOStagiaire_formateur extends DAO {
         $sql = 'SELECT * FROM stagiaire_formateur WHERE id_stagiaire=:id';
         $param = ['id'=>$s->id];
         $statement = $this->executeRequest($sql, $param);
-//        $statement = $this->cnx->prepare($sql);
-//        $statement->execute(['id'=>$s->id]);
         $statement->setFetchMode(PDO::FETCH_CLASS|PDO::FETCH_PROPS_LATE,'Stagiaire_formateur'); // <------- FETCH MODE TO CHECK either GROUP OR NAM
         $d = [];
         while ($sf = $statement->fetch()){
@@ -28,18 +26,11 @@ class DAOStagiaire_formateur extends DAO {
         $sql = 'INSERT INTO stagiaire_formateur (id_stagiaire, id_formateur, date_debut, date_fin) VALUES (:stagiaire, :formateur, :debut, :fin)';
         $param = ['stagiaire'=>$sf->id_stagiaire, 'formateur'=>$sf->id_formateur, 'debut'=>$sf->date_debut, 'fin'=>$sf->date_fin];
         $this->executeRequest($sql, $param);
-//        $statement = $this->cnx->prepare($sql);
-//        $statement->execute(['stagiaire'=>$sf->id_stagiaire,
-//                             'formateur'=>$sf->id_formateur,
-//                             'debut'=>$sf->date_debut,
-//                             'fin'=>$sf->date_fin]);        
     }
             
     public function delete($id){
         $sql = 'DELETE FROM stagiaire_formateur WHERE id_stagiaire=:id';
         $param = ['id'=>$id];
         $this->executeRequest($sql, $param);
-//        $statement = $this->cnx->prepare($sql);
-//        $statement->execute(['id'=>$id]);
     }
 }

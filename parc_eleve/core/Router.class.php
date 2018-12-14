@@ -16,7 +16,9 @@ class Router {
             $this->damageControl($e);
         }
     }
-    
+    /*
+     * met en place le controlleur spécifié par le parametre de la requete
+     */
     public function setController(Request $request){
         $controller = "Index";
         if ($request->exists('controller'))
@@ -30,10 +32,13 @@ class Router {
             return $controller;
         }
         else {
-            throw new Exception("Can't find ".$file); // <--!!!!!!!!!!!!!!!!!!!!!
+            throw new Exception("Can't find ".$file); 
         }
     }
     
+    /*
+     * met en place l'action de la requete, utilisé par le controlleur pour effectuer la bonne methode
+     */
     public function setAction(Request $request){
         $action = 'index';
         if ($request->exists('action')){
@@ -42,6 +47,7 @@ class Router {
         return $action; 
     } 
     
+    //creee le controleur d'erreur, qui affiche le message d'erreur
     public function damageControl(Exception $e){
         $error = new ControllerError($e);        
     }

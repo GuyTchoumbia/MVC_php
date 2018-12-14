@@ -1,4 +1,7 @@
 <?php
+/*
+ * Entité Type_Formation
+ */
 
 class Type_formation {
     private $id_type_formation;

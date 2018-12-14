@@ -8,8 +8,6 @@ class DAOType_formation_formateur extends DAO {
         $sql = 'SELECT * FROM type_formation_formateur WHERE id_formateur=:id';
         $param = ['id'=>$id];
         $statement = $this->executeRequest($sql,$param);
-//        $statement = $this->cnx->prepare($sql);
-//        $statement->execute(['id'=>$id]);
         $statement->setFetchMode(PDO::FETCH_CLASS|PDO::FETCH_PROPS_LATE,'Type_formation_formateur');
         $d = [];
         while ($tf = $statement->fetch()){

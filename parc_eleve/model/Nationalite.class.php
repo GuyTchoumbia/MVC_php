@@ -1,4 +1,7 @@
 <?php
+/*
+ * Entité Nationalite
+ */
 
 class Nationalite {
     protected $id_nationalite;

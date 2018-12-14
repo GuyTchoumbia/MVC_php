@@ -1,5 +1,9 @@
 <?php
 
+/*
+ * Entité Type_formation_formateur
+ */
+
 class Type_formation_formateur {
     private $id_type_formation;
     private $id_formateur;

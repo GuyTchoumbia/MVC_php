@@ -46,7 +46,7 @@
                         if (isset($tFormateur)){
                             echo '<fieldset class="web" name="'.$stagiaire->id.'[id_type_formation]" style="display:none">';
                             foreach ($tFormateur as $formateur){                                     
-                                foreach ($formateur->type_formation as $type){
+                                foreach ($formateur->type_formation as $type){                                    
                                     if ($type->id_type_formation=='5be300465efb3'){
                                         foreach ($stagiaire->stagiaire_formateur as $stagiaire_formateur){
                                             if ($stagiaire->id_type_formation == $type->id_type_formation and $stagiaire_formateur->id_formateur == $formateur->id_formateur){

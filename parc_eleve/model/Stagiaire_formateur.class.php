@@ -1,4 +1,7 @@
 <?php
+/*
+ * Entité Stagiaire_formateur
+ */
 
 class Stagiaire_formateur {
     private $id_stagiaire;

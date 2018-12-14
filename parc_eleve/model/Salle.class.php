@@ -1,4 +1,7 @@
 <?php
+/*
+ * Entité Salle
+ */
 
 class Salle {
     private $id_salle;

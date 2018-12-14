@@ -16,23 +16,22 @@ abstract class Controller {
             }         
         }
     } 
-        
-    public function getData(){
-        return $this->data;
-    }
+    /*
+     * accesseurs
+     */    
+    public function getData(){ return $this->data; }
     
-    public function getConnection(){
-        return $this->cnx;
-    }
+    public function getConnection(){ return $this->cnx; }
     
-    public function getRequest(){
-        return $this->request;
-    }
+    public function getRequest(){ return $this->request; }
     
-    public function setRequest(Request $request){
-        $this->request = $request;
-    }
+    public function setRequest(Request $request){ $this->request = $request; }
     
+    /*
+     * cherche la methode definie par le parametre action de la requete,
+     * et l'effectue si trouvée
+     * sinon, renvoie exception
+     */
     public function execute($action){
         if (method_exists($this, $action)){            
             $this->$action();         
@@ -42,11 +41,15 @@ abstract class Controller {
             throw new Exception("Can't find method ".$action." in class ".$class);
         }
     }
-
+    /*
+     * utilisé pour stocker les differents resultSets des requetes sql
+     */
     public function merge($d){ 
-        $this->data = array_merge_recursive($this->data,$d);  //fusionne les tableaux $this->vars et $d  
+        $this->data = array_merge_recursive($this->data,$d);  
     }
-     
+    /*
+     * un render tout ce qu'il y a de plus basique
+     */ 
     function render($filename){ 
         extract($this->data);      
         ob_start();     
@@ -54,7 +57,10 @@ abstract class Controller {
         $content = ob_get_clean();  
         require('views/template.php');		    
     } 
-
+    
+    /*
+     * utilisé par le contructeur pour precharger les modeles
+     */
     function loadModel($name){             
         require_once('model/'.$name.'.php');              
         $this->$name = new $name($this->cnx);    

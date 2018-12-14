@@ -1,4 +1,7 @@
 <?php
+/*
+ * Entité Formateur
+ */
 
 class Formateur {
     private $id_formateur;

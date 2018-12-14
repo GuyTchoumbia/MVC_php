@@ -3,6 +3,9 @@ require_once 'core/Controller.class.php';
 
 class ControllerInsert extends Controller {
     
+    /*
+     * recupere les infos necessaires au rendering de la page insert, puis effectue le rendering
+     */
     function index(){
         $nation = ['tNation' => $this->DAONationalite->findAll()];
         $this->merge($nation);
@@ -16,6 +19,11 @@ class ControllerInsert extends Controller {
         $this->render('insert');
     }
     
+    /*
+     * insertion de stagiaire
+     * throws Exception stagiaire deja existant si deja existant
+     * sinon cree un objet Stagiaire et l'insere en bdd
+     */
     function insert(){
         extract($this->request->getData('post'));
         $stagiaire = new Stagiaire(uniqid(),$nom,$prenom,$nationalite,$type_formation); 
